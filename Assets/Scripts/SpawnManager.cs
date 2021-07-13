@@ -5,11 +5,12 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour
 {
     public int enemiesNumber;
-    //List<GameObject> numbers = new List<GameObject>() { Archer, Cube, Capsule };
-
    public GameObject Archer;
     public GameObject Cube;
     public GameObject Capsule;
+    private static float xSpawnRange = 10f;
+    private static float zSpawnRange = 10f;
+    private static float ySpawnPosition = 3f;
     // Start is called before the first frame update
     void Start()
     {
@@ -35,7 +36,7 @@ public class SpawnManager : MonoBehaviour
         {
             prefab = Capsule;
         }
-        var position = new Vector3(Random.Range(-10.0f, 10.0f), 3, Random.Range(-10.0f, 10.0f));
+        var position = new Vector3(Random.Range(-xSpawnRange, xSpawnRange), ySpawnPosition, Random.Range(-zSpawnRange, zSpawnRange));
         Instantiate(prefab, position, Quaternion.identity);
     }
 

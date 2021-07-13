@@ -117,8 +117,8 @@ MonoBehaviour:
   target: {fileID: 0}
   layerMask:
     serializedVersion: 2
-    m_Bits: 0
-  agent: {fileID: 0}
+    m_Bits: 128
+  agent: {fileID: 1395750780892763954}
 --- !u!54 &1395750780892763953
 Rigidbody:
   m_ObjectHideFlags: 0

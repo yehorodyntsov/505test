@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using System;
 
 public class Player : MonoBehaviour
 {
@@ -8,6 +10,11 @@ public class Player : MonoBehaviour
     public int damage;
     public float speed = 20;
     public Camera fpsCam;
+    public int kills;
+    public int damageSum;
+    public TMP_Text killsText;
+    public TMP_Text damageText;
+    public TMP_Text healthText;
 
     // Start is called before the first frame update
     void Start()
@@ -19,9 +26,10 @@ public class Player : MonoBehaviour
     void Update()
     {
         if (Input.GetButtonDown("Fire1"))
-        {
-            // Debug.Log("alsdgj");
+        {           
             Shoot();
+            damageSum += damage;
+            UpdatePlayerText();
         }
         if (health < 1)
         {
@@ -34,17 +42,22 @@ public class Player : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit))
         {
-            //Debug.Log(hit.transform.name);
-            Enemy enemy = hit.transform.gameObject.GetComponent<Enemy>();
             
-            //hit.transform.gameObject.
+            Enemy enemy = hit.transform.gameObject.GetComponent<Enemy>();                    
             if (enemy != null)
             {
-                enemy.health -= damage;
-                Debug.Log("enemy health = " + enemy.health.ToString());
+                enemy.health -= damage;                
+                
             }
 
         }
 
+    }
+
+    public void UpdatePlayerText()
+    {
+        killsText.text = "Kills: " + kills.ToString();
+        damageText.text = "Damage: " + damageSum.ToString();
+        healthText.text = "Health: " + health.ToString();
     }
 }
