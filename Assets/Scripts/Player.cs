@@ -28,8 +28,7 @@ public class Player : MonoBehaviour
         if (Input.GetButtonDown("Fire1"))
         {           
             Shoot();
-            damageSum += damage;
-            UpdatePlayerText();
+            
         }
         if (health < 1)
         {
@@ -43,9 +42,13 @@ public class Player : MonoBehaviour
         if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit))
         {
             
-            Enemy enemy = hit.transform.gameObject.GetComponent<Enemy>();                    
+            Enemy enemy = hit.transform.gameObject.GetComponent<Enemy>();
+            Debug.Log(hit.transform.gameObject.name);
             if (enemy != null)
             {
+                
+                damageSum += damage;
+                UpdatePlayerText();
                 enemy.health -= damage;                
                 
             }
